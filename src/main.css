@@ -1,0 +1,220 @@
+:root {
+	font-family: 'Inter', sans-serif;
+	line-height: 1.5;
+	font-weight: 500;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	scrollbar-width: none;
+	accent-color: #656bdd;
+
+	--acrylic-bg: hsla(0, 0%, 100%, 0.5);
+	--acrylic-blur: blur(16px);
+	--acrylic-border: 1px solid hsla(0, 0%, 100%, 0.8);
+	--acrylic-shadow: 4px 4px 12px 2px hsla(0, 0%, 0%, 0.05);
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background-color: white;
+	scroll-behavior: smooth;
+}
+
+body {
+	overflow-y: scroll;
+}
+
+a {
+	color: black;
+	font-weight: 600;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 300ms ease-in-out;
+}
+
+a:hover {
+	color: #656bdd;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+}
+
+.subtle-gradient-background {
+	background-color: hsla(0, 0%, 100%, 1);
+	background-image: radial-gradient(at 55% 41%, rgb(233, 199, 253) 0px, transparent 50%), radial-gradient(at 10% 15%, hsla(2, 0%, 100%, 1) 0px, transparent 50%),
+		radial-gradient(at 95% 95%, hsla(0, 0%, 100%, 1) 0px, transparent 50%), radial-gradient(at 56% 9%, hsla(0, 0%, 100%, 1) 0px, transparent 50%),
+		radial-gradient(at 34% 54%, rgb(202, 229, 253) 0px, transparent 50%), radial-gradient(at 6% 66%, hsla(0, 0%, 100%, 1) 0px, transparent 50%),
+		radial-gradient(at 80% 56%, hsla(0, 0%, 100%, 1) 0px, transparent 50%), radial-gradient(at 59% 79%, hsla(0, 0%, 100%, 1) 0px, transparent 50%);
+	background-repeat: repeat;
+	background-size: contain;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	position: fixed;
+	padding: 0;
+	margin: 0;
+	top: 0;
+	overflow: hidden;
+}
+
+h1 {
+	font-size: 7rem;
+	font-weight: 700;
+	line-height: 1;
+	letter-spacing: -0.55rem;
+	pointer-events: none;
+}
+
+h2 {
+	font-size: 2rem;
+	line-height: 1;
+	font-weight: 700;
+	letter-spacing: -0.1rem;
+}
+
+h3 {
+	margin: 0;
+}
+
+p {
+	margin: 0;
+}
+
+button {
+	color: black;
+	background-color: white;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 16px;
+	padding: 0.75rem 1.5rem;
+	font-size: 1rem;
+	line-height: 1rem;
+	font-weight: 500;
+	font-family: inherit;
+	cursor: pointer;
+	transition: all 300ms ease-in-out;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+	transform: scale(1) translateZ(0);
+}
+
+button:hover {
+	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+	border: 1px solid #7178f6;
+	background-color: #7178f6;
+	color: white;
+	transform: scale(1.05) translateZ(0);
+}
+
+button:focus,
+button:focus-visible {
+	outline: none;
+}
+
+button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+select,
+textarea {
+	border-radius: 8px;
+	border: 1px solid grey;
+	padding: 0.6rem 1.25rem;
+	font-size: 1rem;
+	font-weight: 500;
+	font-family: inherit;
+	transition: all 300ms ease;
+}
+
+input[type='number'] {
+	border-radius: 8px;
+}
+
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='password']:focus,
+input[type='number']:focus,
+select:focus,
+textarea:focus {
+	outline: none;
+	border: 1px solid #7178f6;
+	box-shadow: 0px 0px 8px #7178f6;
+}
+
+input[type='checkbox'] {
+	scale: 1.25;
+}
+
+hr {
+	border: 1px solid hsla(0, 0%, 0%, 0.25);
+	margin: 0 1rem;
+	margin-top: 0.25rem;
+}
+
+nav {
+	position: fixed;
+	top: 2rem;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 2rem;
+	padding: 1rem 2rem;
+	border-radius: 16px;
+	border: var(--acrylic-border);
+	background-color: var(--acrylic-bg);
+	backdrop-filter: blur(8px);
+}
+
+main {
+	padding: 0 1rem;
+	margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+	html {
+		height: -webkit-fill-available;
+	}
+}
+
+#gradient-canvas {
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	--gradient-color-1: #dff1ff;
+	--gradient-color-2: #a6deff;
+	--gradient-color-3: #ffffff;
+	--gradient-color-4: #d5d8fc;
+	z-index: -999;
+	overflow: hidden;
+	inset: 0;
+}
+
+.heroHeading {
+	padding: 0 0.5rem;
+	background: #454545;
+	background: linear-gradient(to top left, #454545 5%, #000000 95%);
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+h2 a {
+	color: inherit;
+	font-weight: 700;
+}
