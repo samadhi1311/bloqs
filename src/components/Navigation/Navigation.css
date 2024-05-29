@@ -1,0 +1,219 @@
+.bloqs-navigation {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 1rem;
+	border-radius: 18px;
+
+	background-color: hsla(0, 0%, 100%, 0.95);
+	border: var(--acrylic-border);
+	box-shadow: var(--acrylic-shadow);
+
+	position: absolute;
+	box-sizing: border-box;
+	width: 90%;
+}
+
+.bloqs-navigation a {
+	color: black;
+}
+
+.bloqs-navigation a:hover {
+	color: #7178f6;
+}
+
+.bloqs-navigation-nav-logo {
+	width: 36px;
+}
+
+.bloqs-navigation-logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	font-size: 2.5rem;
+	font-weight: bold;
+	padding: 0 1.5rem;
+}
+
+.bloqs-navigation ul li button {
+	display: inline-flex;
+	cursor: pointer;
+}
+
+.bloqs-navigation-nav-btn {
+	display: none;
+}
+
+.bloqs-navigation-nav-btn i {
+	display: block;
+	width: 1.3rem;
+	height: 0.15rem;
+	background: black;
+	border-radius: 0.15rem;
+	margin-left: 0.9rem;
+}
+
+.bloqs-navigation-nav-btn i:nth-child(1) {
+	margin-top: 1rem;
+}
+
+.bloqs-navigation-nav-btn i:nth-child(2) {
+	margin-top: 0.3rem;
+	opacity: 1;
+}
+
+.bloqs-navigation-nav-btn i:nth-child(3) {
+	margin-top: 0.3rem;
+}
+
+.bloqs-navigation ul {
+	float: none;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.bloqs-navigation ul li {
+	display: inline;
+}
+
+.bloqs-navigation ul li:not(:first-child) {
+	margin-left: 3rem;
+}
+
+.bloqs-navigation ul li:last-child {
+	margin-right: 1.5rem;
+}
+
+.bloqs-navigation ul li Link {
+	display: inline-block;
+	outline: none;
+}
+
+@media screen and (max-width: 768px) {
+	.bloqs-navigation ul {
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.bloqs-navigation-logo {
+		padding: 0;
+	}
+
+	.bloqs-navigation-nav-wrapper {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		opacity: 0;
+		transition: all 300ms ease-in-out;
+		background: rgba(255, 255, 255, 0.75);
+		box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+		backdrop-filter: blur(16px);
+	}
+
+	.bloqs-navigation-nav-wrapper ul {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 100%;
+		padding-inline-start: 0;
+	}
+
+	.bloqs-navigation-nav-wrapper ul li {
+		display: block;
+		float: none;
+		width: 100%;
+		text-align: center;
+		margin-bottom: 1rem;
+	}
+
+	.bloqs-navigation-nav-wrapper ul li:not(:first-child) {
+		margin-left: 0;
+	}
+
+	.bloqs-navigation-nav-wrapper ul li Link {
+		padding: 1.5rem 1.5rem;
+		opacity: 0;
+		transform: translateX(-1.3rem);
+		transition: all 300ms ease-in-out;
+	}
+
+	.bloqs-navigation-nav-btn {
+		position: relative;
+		display: block;
+		align-self: center;
+		height: 3rem;
+		width: 3rem;
+		cursor: pointer;
+		z-index: 9999;
+		border-radius: 50%;
+	}
+
+	.bloqs-navigation-nav-btn i {
+		display: block;
+		width: 1.3rem;
+		height: 0.15rem;
+		background: black;
+		border-radius: 0.15rem;
+		margin-left: 0.9rem;
+	}
+
+	.bloqs-navigation-nav-btn i:nth-child(1) {
+		margin-top: 1rem;
+	}
+
+	.bloqs-navigation-nav-btn i:nth-child(2) {
+		margin-top: 0.3rem;
+		opacity: 1;
+	}
+
+	.bloqs-navigation-nav-btn i:nth-child(3) {
+		margin-top: 0.3rem;
+	}
+
+	li {
+		font-size: large;
+		padding: 1rem 0;
+	}
+}
+
+#bloqs-navigation-nav:checked + .bloqs-navigation-nav-btn {
+	transform: rotate(45deg);
+}
+
+#bloqs-navigation-nav:checked + .bloqs-navigation-nav-btn i {
+	background: black;
+	transition: transform 300ms ease;
+}
+
+#bloqs-navigation-nav:checked + .bloqs-navigation-nav-btn i:nth-child(1) {
+	transform: translateY(0.4rem) rotate(180deg);
+}
+
+#bloqs-navigation-nav:checked + .bloqs-navigation-nav-btn i:nth-child(2) {
+	opacity: 0;
+}
+
+#bloqs-navigation-nav:checked + .bloqs-navigation-nav-btn i:nth-child(3) {
+	transform: translateY(-0.4rem) rotate(90deg);
+}
+
+#bloqs-navigation-nav:checked ~ .bloqs-navigation-nav-wrapper {
+	z-index: 9990;
+	opacity: 1;
+}
+
+#bloqs-navigation-nav:checked ~ .bloqs-navigation-nav-wrapper ul li Link {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+.bloqs-navigation-hidden {
+	display: none;
+}
