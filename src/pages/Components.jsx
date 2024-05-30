@@ -1,7 +1,9 @@
 import Modal from '../components/Modal/Modal';
 import MiniLoader from '../components/MiniLoader/MiniLoader';
 import Navigation from '../components/Navigation/Navigation';
-import Toast from '../components/Toast/Toast';
+import '../components/Toast/Toast.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import './Components.css';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -11,6 +13,29 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 export default function Components() {
 	// Modal
 	const [show, setShow] = useState(false);
+
+	const [copied, setCopied] = useState(false);
+
+	const notify = () => {
+		toast(<ToastDisplay />);
+		copy();
+	};
+
+	function ToastDisplay() {
+		return (
+			<div className='bloqs-toast-container'>
+				<i className='bx bxs-check-circle bx-sm'></i>
+				<p>Copied to clipboard.</p>
+			</div>
+		);
+	}
+	const copy = () => {
+		console.log('Copied!');
+		setCopied(true);
+		setTimeout(() => {
+			setCopied(false);
+		}, 5000);
+	};
 
 	const [activeComponent, setActiveComponent] = useState('modal');
 
@@ -24,11 +49,11 @@ export default function Components() {
 				<div className='jsx'>
 					<span className='copy-button'>
 						<p>JSX</p>
-						<CopyToClipboard text={jsxCode}>
-							<button>
+						<button>
+							<CopyToClipboard text={jsxCode} onCopy={(copied) => notify()}>
 								<i className='bx bx-copy'></i>
-							</button>
-						</CopyToClipboard>
+							</CopyToClipboard>
+						</button>
 					</span>
 					<SyntaxHighlighter language='jsx' style={theme} wrapLongLines customStyle={{ borderRadius: '0 0 12px 12px', margin: 0 }}>
 						{jsxCode}
@@ -37,17 +62,151 @@ export default function Components() {
 				<div className='css'>
 					<span className='copy-button'>
 						<p>CSS</p>
-						<CopyToClipboard text={cssCode}>
-							<button>
+						<button>
+							<CopyToClipboard text={cssCode} onCopy={(copied) => notify()}>
 								<i className='bx bx-copy'></i>
-							</button>
-						</CopyToClipboard>
+							</CopyToClipboard>
+						</button>
 					</span>
 					<SyntaxHighlighter language='css' style={theme} wrapLongLines customStyle={{ borderRadius: '0 0 12px 12px', margin: 0 }}>
 						{cssCode}
 					</SyntaxHighlighter>
 				</div>
 			</>
+		);
+	};
+
+	const renderGettingStarted = () => {
+		const cssCode = `:root {
+	font-family: 'Inter', sans-serif;
+	line-height: 1.5;
+	font-weight: 500;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	scrollbar-width: thin;
+	accent-color: #656bdd;
+
+	--acrylic-bg: hsla(0, 0%, 100%, 0.5);
+	--acrylic-blur: blur(16px);
+	--acrylic-border: 1px solid hsla(0, 0%, 100%, 0.8);
+	--acrylic-shadow: 4px 4px 12px 2px hsla(0, 0%, 0%, 0.05);
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	overflow-y: scroll;
+}
+
+a {
+	color: #656bdd;
+	font-weight: 500;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 300ms ease-in-out;
+}
+
+a:hover {
+	color: black;
+}
+
+button {
+	color: black;
+	background-color: white;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 16px;
+	padding: 0.6rem 1.25rem;
+	font-size: 1em;
+	font-weight: 500;
+	font-family: inherit;
+	cursor: pointer;
+	transition: all 300ms;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+	transform: scale(1) translateZ(0);
+}
+
+button:hover {
+	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+	border: 1px solid #7178f6;
+	background-color: #7178f6;
+	color: white;
+	transform: scale(1.1) translateZ(0);
+}
+
+button:focus,
+button:focus-visible {
+	outline: none;
+}
+
+button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+select,
+textarea {
+	border-radius: 8px;
+	border: 1px solid grey;
+	padding: 0.6rem 1.25rem;
+	font-size: 1rem;
+	font-weight: 500;
+	font-family: inherit;
+	transition: all 300ms ease;
+}
+
+input[type='number'] {
+	border-radius: 8px;
+}
+
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='password']:focus,
+input[type='number']:focus,
+select:focus,
+textarea:focus {
+	outline: none;
+	border: 1px solid #7178f6;
+	box-shadow: 0px 0px 8px #7178f6;
+}
+
+input[type='checkbox'] {
+	scale: 1.25;
+}
+		`;
+
+		return (
+			<section className='component-info'>
+				<h2>Getting Started</h2>
+				<p>Include following CSS in the entry point of your app.(ie: App.jsx)</p>
+				<div className='syntax'>
+					<div>
+						<span className='copy-button'>
+							<p>CSS</p>
+							<CopyToClipboard text={cssCode}>
+								<button>
+									<i className='bx bx-copy'></i>
+								</button>
+							</CopyToClipboard>
+						</span>
+						<SyntaxHighlighter language='jsx' style={theme} customStyle={{ borderRadius: '0 0 12px 12px', margin: 0 }}>
+							{cssCode}
+						</SyntaxHighlighter>
+					</div>
+				</div>
+			</section>
 		);
 	};
 
@@ -521,74 +680,32 @@ export default function Navigation() {
 				<h2>Components</h2>
 				<hr />
 				<br />
+				<a onClick={() => handleComponentClick('getting-started')}>Getting Started</a>
 				<a onClick={() => handleComponentClick('modal')}>Modal</a>
 				<a onClick={() => handleComponentClick('mini-loader')}>MiniLoader</a>
 				<a onClick={() => handleComponentClick('navigation')}>Navigation</a>
 			</aside>
 			<div className='components-main'>
+				{activeComponent === 'getting-started' && renderGettingStarted()}
 				{activeComponent === 'modal' && renderModal()}
 				{activeComponent === 'mini-loader' && renderMiniLoader()}
 				{activeComponent === 'navigation' && renderNavigation()}
 			</div>
+			<ToastContainer
+				position='bottom-right'
+				toastStyle={{ color: '#151515' }}
+				autoClose={3000}
+				hideProgressBar
+				newestOnTop={false}
+				closeOnClick
+				closeButton={false}
+				rtl={false}
+				pauseOnFocusLoss={false}
+				draggable={false}
+				pauseOnHover={false}
+				limit={1}
+				theme='light'
+			/>
 		</div>
 	);
 }
-
-/*
-here's a part of my code. the fade in occurs. but not the fade out.
-		const cssCode = `.bloqs-navigation {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: center;
-			padding: 1rem 1rem;
-			border-radius: 18px;
-		
-			background-color: hsla(0, 0%, 100%, 0.95);
-			border: var(--acrylic-border);
-			box-shadow: var(--acrylic-shadow);
-		
-			position: absolute;
-			box-sizing: border-box;
-			width: 90%;
-		}
-		`;
-
-		return (
-			<section className='navigation component-info' id='navigation' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
-				<h2>Navigation</h2>
-				<p>Navigation component provides a navigation bar for desktop and full screen hamburger menu for mobile.</p>
-
-				<div className='sandbox'>
-					<Navigation />
-				</div>
-
-				<div className='syntax'>{renderSyntax(jsxCode, cssCode)}</div>
-			</section>
-		);
-	};
-
-	return (
-		<main className='components-container'>
-			<aside className='components-sidebar'>
-				<h2>Components</h2>
-				<hr />
-				<br />
-				<a onClick={() => handleComponentClick('modal')}>Modal</a>
-				<a onClick={() => handleComponentClick('mini-loader')}>MiniLoader</a>
-				<a onClick={() => handleComponentClick('navigation')}>Navigation</a>
-			</aside>
-			<div className='components-main'>
-				<AnimatePresence mode='wait'>
-					<div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} layout transition={{ duration: 1 }}>
-						{activeComponent === 'modal' && renderModal()}
-						{activeComponent === 'mini-loader' && renderMiniLoader()}
-						{activeComponent === 'navigation' && renderNavigation()}
-					</div>
-				</AnimatePresence>
-			</div>
-		</main>
-	);
-}
-
-*/
