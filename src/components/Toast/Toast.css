@@ -1,18 +1,11 @@
 .bloqs-toast-container {
-	position: fixed;
-	padding: 1rem 2rem;
-	right: 2rem;
-	bottom: 2rem;
-	z-index: 100;
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 1rem;
+	gap: 2rem;
 
 	border-radius: 12px;
-	background-color: var(--acrylic-bg);
-	backdrop-filter: var(--acrylic-blur);
 	border: var(--acrylic-border);
-	box-shadow: var(--acrylic-shadow);
+
+	font-size: 1rem;
 }
