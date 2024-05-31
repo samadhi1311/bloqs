@@ -49,7 +49,7 @@ export default function Home() {
 				</h2>
 
 				<p style={{ maxWidth: '480px', marginBottom: '2rem', textAlign: 'justify' }}>
-					'BLOQS' is a handmade collection of open source styled React components built by a team of undergraduate students from University of Vavuniya, Sri Lanka for their{' '}
+					'BLOQS' is a handmade collection of open source styled React components built by a team of undergraduate students from University of Vavuniya, Sri Lanka for their
 					<a href='https://samadhi1311.github.io/petpals'>final year project</a> licenced under <a href='https://opensource.org/license/mit'>MIT</a>.
 				</p>
 
