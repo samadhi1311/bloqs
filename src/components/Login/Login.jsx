@@ -8,7 +8,7 @@ export default function Login() {
 			<form className='bloqs-login-form'>
 				<input type='email' name='email' placeholder='Email' />
 
-				<input type='password' name='password' placeholder='Password' />
+				<input type='password' name='password' placeholder='Password' autoComplete='current-password' />
 
 				<div className='bloqs-login-submit'>
 					<button type='submit'>
