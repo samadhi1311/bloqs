@@ -4,12 +4,13 @@ import Modal from '../components/Modal/Modal';
 import MiniLoader from '../components/MiniLoader/MiniLoader';
 import Navigation from '../components/Navigation/Navigation';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomOneLight as theme } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { nord as theme } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { ToastContainer, toast } from 'react-toastify';
 import '../components/Toast/Toast.css';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from '../components/Login/Login';
+import SignUp from '../components/Signup/SignUp';
 
 export default function Components() {
 	// Modal
@@ -32,6 +33,7 @@ export default function Components() {
 
 	const handleComponentClick = (component) => {
 		setActiveComponent(component);
+		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
 
 	const renderSyntax = (jsxCode, cssCode) => {
@@ -184,16 +186,19 @@ input[type='checkbox'] {
 				<p>
 					1. Install <a href='https://boxicons.com/'>BoxIcons</a>.
 				</p>
-				<span className='copy-button'>
-					<CopyToClipboard text='npm install boxicons'>
-						<button>
-							<i className='bx bx-copy'></i>
-						</button>
-					</CopyToClipboard>
-				</span>
-				<SyntaxHighlighter style={theme} customStyle={{ borderRadius: '0 0 12px 12px', margin: 0 }}>
-					npm install boxicons
-				</SyntaxHighlighter>
+				<div>
+					<span className='copy-button'>
+						<p>NPM</p>
+						<CopyToClipboard text='npm install boxicons'>
+							<button>
+								<i className='bx bx-copy'></i>
+							</button>
+						</CopyToClipboard>
+					</span>
+					<SyntaxHighlighter style={theme} customStyle={{ borderRadius: '0 0 12px 12px', margin: 0 }}>
+						npm install boxicons
+					</SyntaxHighlighter>
+				</div>
 				<p style={{ marginTop: '2rem' }}>2. Include following CSS in the entry point of your app.(ie: App.jsx)</p>
 				<div>
 					<span className='copy-button'>
@@ -204,7 +209,7 @@ input[type='checkbox'] {
 							</button>
 						</CopyToClipboard>
 					</span>
-					<SyntaxHighlighter language='jsx' style={theme} customStyle={{ borderRadius: '0 0 12px 12px', margin: 0 }}>
+					<SyntaxHighlighter language='css' style={theme} customStyle={{ borderRadius: '0 0 12px 12px', margin: 0 }}>
 						{cssCode}
 					</SyntaxHighlighter>
 				</div>
@@ -442,224 +447,224 @@ export default function Navigation() {
 	`;
 
 		const cssCode = `.bloqs-navigation {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: center;
-			padding: 1rem 1rem;
-			border-radius: 18px;
-		
-			background-color: hsla(0, 0%, 100%, 0.95);
-			border: var(--acrylic-border);
-			box-shadow: var(--acrylic-shadow);
-		
-			position: absolute;
-			box-sizing: border-box;
-			width: 90%;
-		}
-		
-		.bloqs-navigation a {
-			color: black;
-		}
-		
-		.bloqs-navigation a:hover {
-			color: #7178f6;
-		}
-		
-		.bloqs-navigation-nav-logo {
-			width: 36px;
-		}
-		
-		.bloqs-navigation-logo {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			gap: 1rem;
-			font-size: 2.5rem;
-			font-weight: bold;
-			padding: 0 1.5rem;
-		}
-		
-		.bloqs-navigation ul li button {
-			display: inline-flex;
-			cursor: pointer;
-		}
-		
-		.bloqs-navigation-nav-btn {
-			display: none;
-		}
-		
-		.bloqs-navigation-nav-btn i {
-			display: block;
-			width: 1.3rem;
-			height: 0.15rem;
-			background: black;
-			border-radius: 0.15rem;
-			margin-left: 0.9rem;
-		}
-		
-		.bloqs-navigation-nav-btn i:nth-child(1) {
-			margin-top: 1rem;
-		}
-		
-		.bloqs-navigation-nav-btn i:nth-child(2) {
-			margin-top: 0.3rem;
-			opacity: 1;
-		}
-		
-		.bloqs-navigation-nav-btn i:nth-child(3) {
-			margin-top: 0.3rem;
-		}
-		
-		.bloqs-navigation ul {
-			float: none;
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			align-items: center;
-		}
-		
-		.bloqs-navigation ul li {
-			display: inline;
-		}
-		
-		.bloqs-navigation ul li:not(:first-child) {
-			margin-left: 3rem;
-		}
-		
-		.bloqs-navigation ul li:last-child {
-			margin-right: 1.5rem;
-		}
-		
-		.bloqs-navigation ul li Link {
-			display: inline-block;
-			outline: none;
-		}
-		
-		@media screen and (max-width: 768px) {
-			.bloqs-navigation ul {
-				flex-direction: column;
-				justify-content: center;
-			}
-		
-			.bloqs-navigation-logo {
-				padding: 0;
-			}
-		
-			.bloqs-navigation-nav-wrapper {
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				z-index: -1;
-				opacity: 0;
-				transition: all 300ms ease-in-out;
-				background: rgba(255, 255, 255, 0.75);
-				box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-				backdrop-filter: blur(16px);
-			}
-		
-			.bloqs-navigation-nav-wrapper ul {
-				position: absolute;
-				top: 50%;
-				transform: translateY(-50%);
-				width: 100%;
-				padding-inline-start: 0;
-			}
-		
-			.bloqs-navigation-nav-wrapper ul li {
-				display: block;
-				float: none;
-				width: 100%;
-				text-align: center;
-				margin-bottom: 1rem;
-			}
-		
-			.bloqs-navigation-nav-wrapper ul li:not(:first-child) {
-				margin-left: 0;
-			}
-		
-			.bloqs-navigation-nav-wrapper ul li Link {
-				padding: 1.5rem 1.5rem;
-				opacity: 0;
-				transform: translateX(-1.3rem);
-				transition: all 300ms ease-in-out;
-			}
-		
-			.bloqs-navigation-nav-btn {
-				position: relative;
-				display: block;
-				align-self: center;
-				height: 3rem;
-				width: 3rem;
-				cursor: pointer;
-				z-index: 9999;
-				border-radius: 50%;
-			}
-		
-			.bloqs-navigation-nav-btn i {
-				display: block;
-				width: 1.3rem;
-				height: 0.15rem;
-				background: black;
-				border-radius: 0.15rem;
-				margin-left: 0.9rem;
-			}
-		
-			.bloqs-navigation-nav-btn i:nth-child(1) {
-				margin-top: 1rem;
-			}
-		
-			.bloqs-navigation-nav-btn i:nth-child(2) {
-				margin-top: 0.3rem;
-				opacity: 1;
-			}
-		
-			.bloqs-navigation-nav-btn i:nth-child(3) {
-				margin-top: 0.3rem;
-			}
-		
-			li {
-				font-size: large;
-				padding: 1rem 0;
-			}
-		}
-		
-		#bloqs-navigation-nav:checked + .bloqs-navigation-nav-btn {
-			transform: rotate(45deg);
-		}
-		
-		#bloqs-navigation-nav:checked + .bloqs-navigation-nav-btn i {
-			background: black;
-			transition: transform 300ms ease;
-		}
-		
-		#bloqs-navigation-nav:checked + .bloqs-navigation-nav-btn i:nth-child(1) {
-			transform: translateY(0.4rem) rotate(180deg);
-		}
-		
-		#bloqs-navigation-nav:checked + .bloqs-navigation-nav-btn i:nth-child(2) {
-			opacity: 0;
-		}
-		
-		#bloqs-navigation-nav:checked + .bloqs-navigation-nav-btn i:nth-child(3) {
-			transform: translateY(-0.4rem) rotate(90deg);
-		}
-		
-		#bloqs-navigation-nav:checked ~ .bloqs-navigation-nav-wrapper {
-			z-index: 9990;
-			opacity: 1;
-		}
-		
-		#bloqs-navigation-nav:checked ~ .bloqs-navigation-nav-wrapper ul li Link {
-			opacity: 1;
-			transform: translateX(0);
-		}
-		
-		.bloqs-navigation-hidden {
-			display: none;
-		}
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 1rem;
+	border-radius: 18px;
+
+	background-color: hsla(0, 0%, 100%, 0.95);
+	border: var(--acrylic-border);
+	box-shadow: var(--acrylic-shadow);
+
+	position: absolute;
+	box-sizing: border-box;
+	width: 90%;
+}
+
+.bloqs-navigation a {
+	color: black;
+}
+
+.bloqs-navigation a:hover {
+	color: #7178f6;
+}
+
+.bloqs-navigation-nav-logo {
+	width: 36px;
+}
+
+.bloqs-navigation-logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	font-size: 2.5rem;
+	font-weight: bold;
+	padding: 0 1.5rem;
+}
+
+.bloqs-navigation ul li button {
+	display: inline-flex;
+	cursor: pointer;
+}
+
+.bloqs-navigation-nav-btn {
+	display: none;
+}
+
+.bloqs-navigation-nav-btn i {
+	display: block;
+	width: 1.3rem;
+	height: 0.15rem;
+	background: black;
+	border-radius: 0.15rem;
+	margin-left: 0.9rem;
+}
+
+.bloqs-navigation-nav-btn i:nth-child(1) {
+	margin-top: 1rem;
+}
+
+.bloqs-navigation-nav-btn i:nth-child(2) {
+	margin-top: 0.3rem;
+	opacity: 1;
+}
+
+.bloqs-navigation-nav-btn i:nth-child(3) {
+	margin-top: 0.3rem;
+}
+
+.bloqs-navigation ul {
+	float: none;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.bloqs-navigation ul li {
+	display: inline;
+}
+
+.bloqs-navigation ul li:not(:first-child) {
+	margin-left: 3rem;
+}
+
+.bloqs-navigation ul li:last-child {
+	margin-right: 1.5rem;
+}
+
+.bloqs-navigation ul li Link {
+	display: inline-block;
+	outline: none;
+}
+
+@media screen and (max-width: 768px) {
+	.bloqs-navigation ul {
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.bloqs-navigation-logo {
+		padding: 0;
+	}
+
+	.bloqs-navigation-nav-wrapper {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		opacity: 0;
+		transition: all 300ms ease-in-out;
+		background: rgba(255, 255, 255, 0.75);
+		box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+		backdrop-filter: blur(16px);
+	}
+
+	.bloqs-navigation-nav-wrapper ul {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 100%;
+		padding-inline-start: 0;
+	}
+
+	.bloqs-navigation-nav-wrapper ul li {
+		display: block;
+		float: none;
+		width: 100%;
+		text-align: center;
+		margin-bottom: 1rem;
+	}
+
+	.bloqs-navigation-nav-wrapper ul li:not(:first-child) {
+		margin-left: 0;
+	}
+
+	.bloqs-navigation-nav-wrapper ul li Link {
+		padding: 1.5rem 1.5rem;
+		opacity: 0;
+		transform: translateX(-1.3rem);
+		transition: all 300ms ease-in-out;
+	}
+
+	.bloqs-navigation-nav-btn {
+		position: relative;
+		display: block;
+		align-self: center;
+		height: 3rem;
+		width: 3rem;
+		cursor: pointer;
+		z-index: 9999;
+		border-radius: 50%;
+	}
+
+	.bloqs-navigation-nav-btn i {
+		display: block;
+		width: 1.3rem;
+		height: 0.15rem;
+		background: black;
+		border-radius: 0.15rem;
+		margin-left: 0.9rem;
+	}
+
+	.bloqs-navigation-nav-btn i:nth-child(1) {
+		margin-top: 1rem;
+	}
+
+	.bloqs-navigation-nav-btn i:nth-child(2) {
+		margin-top: 0.3rem;
+		opacity: 1;
+	}
+
+	.bloqs-navigation-nav-btn i:nth-child(3) {
+		margin-top: 0.3rem;
+	}
+
+	li {
+		font-size: large;
+		padding: 1rem 0;
+	}
+}
+
+#bloqs-navigation-nav:checked + .bloqs-navigation-nav-btn {
+	transform: rotate(45deg);
+}
+
+#bloqs-navigation-nav:checked + .bloqs-navigation-nav-btn i {
+	background: black;
+	transition: transform 300ms ease;
+}
+
+#bloqs-navigation-nav:checked + .bloqs-navigation-nav-btn i:nth-child(1) {
+	transform: translateY(0.4rem) rotate(180deg);
+}
+
+#bloqs-navigation-nav:checked + .bloqs-navigation-nav-btn i:nth-child(2) {
+	opacity: 0;
+}
+
+#bloqs-navigation-nav:checked + .bloqs-navigation-nav-btn i:nth-child(3) {
+	transform: translateY(-0.4rem) rotate(90deg);
+}
+
+#bloqs-navigation-nav:checked ~ .bloqs-navigation-nav-wrapper {
+	z-index: 9990;
+	opacity: 1;
+}
+
+#bloqs-navigation-nav:checked ~ .bloqs-navigation-nav-wrapper ul li Link {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+.bloqs-navigation-hidden {
+	display: none;
+}
 		`;
 
 		return (
@@ -687,7 +692,7 @@ export default function Login() {
 			<form className='bloqs-login-form'>
 				<input type='email' name='email' placeholder='Email' />
 
-				<input type='password' name='password' placeholder='Password' />
+				<input type='password' name='password' placeholder='Password' autoComplete='current-password' />
 
 				<div className='bloqs-login-submit'>
 					<button type='submit'>
@@ -808,17 +813,157 @@ input {
 		);
 	};
 
+	const renderSignUp = () => {
+		const jsxCode = `import './SignUp.css';
+
+export default function SignUp() {
+	return (
+		<div className='bloqs-signup-form-container'>
+			<h2>Welcome to PetPals</h2>
+
+			<form className='bloqs-signup-form'>
+				<input type='email' name='email' placeholder='Email' />
+
+				<input type='password' name='password' placeholder='Password' autoComplete='new-password' />
+
+				<input type='password' name='confirmPassword' placeholder='Confirm password' autoComplete='new-password' />
+
+				<div className='bloqs-signup-submit'>
+					<button type='submit'>
+						<i className='bx bxs-user-plus bx-sm'></i>
+						Sign Up
+					</button>
+				</div>
+			</form>
+
+			<div className='bloqs-signup-seperator'>
+				<hr />
+				<span>or sign up with</span>
+				<hr />
+			</div>
+
+			<div className='bloqs-signup-social'>
+				<button className='bloqs-signup-google'>
+					<i className='bx bxl-google bx-sm'></i> Google
+				</button>
+			</div>
+
+			<div className='bloqs-signup-login'>
+				<p>
+					Already have an account? <a href='#'>Login</a>
+				</p>
+			</div>
+		</div>
+	);
+}
+		`;
+
+		const cssCode = `.bloqs-signup-page {
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	overflow-x: hidden;
+}
+
+.bloqs-signup-form-container {
+	width: 95%;
+	max-width: 512px;
+	padding: 1rem;
+	text-align: center;
+	border-radius: 12px;
+	background-color: var(--acrylic-bg);
+	backdrop-filter: var(--acrylic-blur);
+	border: var(--acrylic-border);
+	box-shadow: var(--acrylic-shadow);
+}
+
+.bloqs-signup-form-container h2 {
+	padding: 3rem 0;
+}
+
+.bloqs-signup-form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	flex-wrap: wrap;
+	gap: 0.6rem 0;
+	padding: 1rem;
+}
+
+.bloqs-signup-form input,
+.bloqs-signup-form select,
+.bloqs-signup-form option {
+	padding: 0.5rem 0.5rem;
+	width: 80%;
+	max-width: 480px;
+}
+
+.bloqs-signup-submit {
+	width: 90%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bloqs-signup-seperator {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	padding: 1.5rem;
+}
+
+.bloqs-signup-seperator hr {
+	width: 20%;
+}
+
+.bloqs-signup-social {
+	padding: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bloqs-signup-sign-up {
+	padding: 1rem;
+}
+
+.bloqs-sign-up-login {
+	margin-top: 1rem;
+}
+`;
+		return (
+			<section className='sign-up component-info' id='sign-up'>
+				<h2>Sign Up</h2>
+				<p>Sign Up component provides a Sign up form with typical elements.</p>
+
+				<div className='sandbox'>
+					<SignUp />
+				</div>
+
+				<div className='syntax'>{renderSyntax(jsxCode, cssCode)}</div>
+			</section>
+		);
+	};
+
 	return (
 		<div className='components-container'>
 			<aside className='components-sidebar'>
 				<h2>Components</h2>
 				<hr className='components-hr' />
 				<br />
-				<a onClick={() => handleComponentClick('getting-started')}>Getting Started</a>
+				<a onClick={() => handleComponentClick('getting-started')} style={{ marginBottom: '1rem' }}>
+					Getting Started
+				</a>
 				<a onClick={() => handleComponentClick('login')}>Login</a>
 				<a onClick={() => handleComponentClick('modal')}>Modal</a>
 				<a onClick={() => handleComponentClick('mini-loader')}>MiniLoader</a>
 				<a onClick={() => handleComponentClick('navigation')}>Navigation</a>
+				<a onClick={() => handleComponentClick('sign-up')}>Sign Up</a>
 			</aside>
 			<div className='components-main'>
 				{activeComponent === 'getting-started' && renderGettingStarted()}
@@ -826,6 +971,7 @@ input {
 				{activeComponent === 'modal' && renderModal()}
 				{activeComponent === 'mini-loader' && renderMiniLoader()}
 				{activeComponent === 'navigation' && renderNavigation()}
+				{activeComponent === 'sign-up' && renderSignUp()}
 			</div>
 			<ToastContainer
 				position='bottom-right'
