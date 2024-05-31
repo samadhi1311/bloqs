@@ -1,0 +1,77 @@
+.bloqs-signup-page {
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	overflow-x: hidden;
+}
+
+.bloqs-signup-form-container {
+	width: 95%;
+	max-width: 512px;
+	padding: 1rem;
+	text-align: center;
+	border-radius: 12px;
+	background-color: var(--acrylic-bg);
+	backdrop-filter: var(--acrylic-blur);
+	border: var(--acrylic-border);
+	box-shadow: var(--acrylic-shadow);
+}
+
+.bloqs-signup-form-container h2 {
+	padding: 3rem 0;
+}
+
+.bloqs-signup-form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	flex-wrap: wrap;
+	gap: 0.6rem 0;
+	padding: 1rem;
+}
+
+.bloqs-signup-form input,
+.bloqs-signup-form select,
+.bloqs-signup-form option {
+	padding: 0.5rem 0.5rem;
+	width: 80%;
+	max-width: 480px;
+}
+
+.bloqs-signup-submit {
+	width: 90%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bloqs-signup-seperator {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	padding: 1.5rem;
+}
+
+.bloqs-signup-seperator hr {
+	width: 20%;
+}
+
+.bloqs-signup-social {
+	padding: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bloqs-signup-sign-up {
+	padding: 1rem;
+}
+
+.bloqs-sign-up-login {
+	margin-top: 1rem;
+}
