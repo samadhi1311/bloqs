@@ -1,24 +1,22 @@
+import { useState } from 'react';
+import './Components.css';
 import Modal from '../components/Modal/Modal';
 import MiniLoader from '../components/MiniLoader/MiniLoader';
 import Navigation from '../components/Navigation/Navigation';
-import '../components/Toast/Toast.css';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useState } from 'react';
-import './Components.css';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { nord as theme } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { atomOneLight as theme } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { ToastContainer, toast } from 'react-toastify';
+import '../components/Toast/Toast.css';
+import 'react-toastify/dist/ReactToastify.css';
+import Login from '../components/Login/Login';
 
 export default function Components() {
 	// Modal
 	const [show, setShow] = useState(false);
 
-	const [copied, setCopied] = useState(false);
-
 	const notify = () => {
 		toast(<ToastDisplay />);
-		copy();
 	};
 
 	function ToastDisplay() {
@@ -29,15 +27,8 @@ export default function Components() {
 			</div>
 		);
 	}
-	const copy = () => {
-		console.log('Copied!');
-		setCopied(true);
-		setTimeout(() => {
-			setCopied(false);
-		}, 5000);
-	};
 
-	const [activeComponent, setActiveComponent] = useState('modal');
+	const [activeComponent, setActiveComponent] = useState('getting-started');
 
 	const handleComponentClick = (component) => {
 		setActiveComponent(component);
@@ -190,21 +181,32 @@ input[type='checkbox'] {
 		return (
 			<section className='component-info'>
 				<h2>Getting Started</h2>
-				<p>Include following CSS in the entry point of your app.(ie: App.jsx)</p>
-				<div className='syntax'>
-					<div>
-						<span className='copy-button'>
-							<p>CSS</p>
-							<CopyToClipboard text={cssCode}>
-								<button>
-									<i className='bx bx-copy'></i>
-								</button>
-							</CopyToClipboard>
-						</span>
-						<SyntaxHighlighter language='jsx' style={theme} customStyle={{ borderRadius: '0 0 12px 12px', margin: 0 }}>
-							{cssCode}
-						</SyntaxHighlighter>
-					</div>
+				<p>
+					1. Install <a href='https://boxicons.com/'>BoxIcons</a>.
+				</p>
+				<span className='copy-button'>
+					<CopyToClipboard text='npm install boxicons'>
+						<button>
+							<i className='bx bx-copy'></i>
+						</button>
+					</CopyToClipboard>
+				</span>
+				<SyntaxHighlighter style={theme} customStyle={{ borderRadius: '0 0 12px 12px', margin: 0 }}>
+					npm install boxicons
+				</SyntaxHighlighter>
+				<p style={{ marginTop: '2rem' }}>2. Include following CSS in the entry point of your app.(ie: App.jsx)</p>
+				<div>
+					<span className='copy-button'>
+						<p>CSS</p>
+						<CopyToClipboard text={cssCode}>
+							<button>
+								<i className='bx bx-copy'></i>
+							</button>
+						</CopyToClipboard>
+					</span>
+					<SyntaxHighlighter language='jsx' style={theme} customStyle={{ borderRadius: '0 0 12px 12px', margin: 0 }}>
+						{cssCode}
+					</SyntaxHighlighter>
 				</div>
 			</section>
 		);
@@ -674,19 +676,153 @@ export default function Navigation() {
 		);
 	};
 
+	const renderLogin = () => {
+		const jsxCode = `import './Login.css';
+
+export default function Login() {
+	return (
+		<div className='bloqs-login-form-container'>
+			<h2>Continue to petpals, </h2>
+
+			<form className='bloqs-login-form'>
+				<input type='email' name='email' placeholder='Email' />
+
+				<input type='password' name='password' placeholder='Password' />
+
+				<div className='bloqs-login-submit'>
+					<button type='submit'>
+						<i className='bx bxs-user-check bx-sm'></i>
+						Log In
+					</button>
+				</div>
+
+				<div className='bloqs-login-forgot-password'>
+					<a href='#'>Forgot password?</a>
+				</div>
+			</form>
+
+			<div className='bloqs-login-seperator'>
+				<hr />
+				<span>or log in with</span>
+				<hr />
+			</div>
+
+			<div className='bloqs-login-social'>
+				<button className='login-google'>
+					<i className='bx bxl-google bx-sm'></i> Google
+				</button>
+			</div>
+
+			<div className='bloqs-login-sign-up'>
+				<p>
+					Not a member yet? <a href='#'>Sign up</a>
+				</p>
+			</div>
+		</div>
+	);
+}
+		`;
+
+		const cssCode = `.bloqs-login-form-container {
+	width: 100%;
+	max-width: 512px;
+	padding: 1rem 0;
+	text-align: center;
+	border-radius: 12px;
+	background-color: var(--acrylic-bg);
+	backdrop-filter: var(--acrylic-blur);
+	border: var(--acrylic-border);
+	box-shadow: var(--acrylic-shadow);
+}
+
+.bloqs-login-form-container h2 {
+	padding: 3rem 0;
+}
+
+.bloqs-login-form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	flex-wrap: wrap;
+	gap: 1rem 0;
+	padding: 1rem 0;
+}
+
+input {
+	padding: 0.5rem 0.5rem;
+	width: 80%;
+	max-width: 480px;
+}
+
+.bloqs-login-submit {
+	width: 90%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bloqs-login-forgot-password {
+	width: 90%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem 0;
+}
+
+.bloqs-login-seperator {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	padding: 1.5rem;
+}
+
+.bloqs-login-seperator hr {
+	width: 20%;
+}
+
+.bloqs-login-social {
+	padding: 1rem 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bloqs-login-sign-up {
+	padding: 1rem 0;
+}
+		`;
+
+		return (
+			<section className='login component-info' id='login'>
+				<h2>Login</h2>
+				<p>Login component provides a login form with typical elements.</p>
+
+				<div className='sandbox'>
+					<Login />
+				</div>
+
+				<div className='syntax'>{renderSyntax(jsxCode, cssCode)}</div>
+			</section>
+		);
+	};
+
 	return (
 		<div className='components-container'>
 			<aside className='components-sidebar'>
 				<h2>Components</h2>
-				<hr />
+				<hr className='components-hr' />
 				<br />
 				<a onClick={() => handleComponentClick('getting-started')}>Getting Started</a>
+				<a onClick={() => handleComponentClick('login')}>Login</a>
 				<a onClick={() => handleComponentClick('modal')}>Modal</a>
 				<a onClick={() => handleComponentClick('mini-loader')}>MiniLoader</a>
 				<a onClick={() => handleComponentClick('navigation')}>Navigation</a>
 			</aside>
 			<div className='components-main'>
 				{activeComponent === 'getting-started' && renderGettingStarted()}
+				{activeComponent === 'login' && renderLogin()}
 				{activeComponent === 'modal' && renderModal()}
 				{activeComponent === 'mini-loader' && renderMiniLoader()}
 				{activeComponent === 'navigation' && renderNavigation()}
