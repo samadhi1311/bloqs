@@ -13,6 +13,7 @@ function Layout() {
 			</header>
 
 			<main>
+				<div className='subtle-gradient-background'></div>
 				<Outlet />
 			</main>
 		</>
