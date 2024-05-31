@@ -1,0 +1,69 @@
+.bloqs-login-form-container {
+	width: 100%;
+	max-width: 512px;
+	padding: 1rem 0;
+	text-align: center;
+	border-radius: 12px;
+	background-color: var(--acrylic-bg);
+	backdrop-filter: var(--acrylic-blur);
+	border: var(--acrylic-border);
+	box-shadow: var(--acrylic-shadow);
+}
+
+.bloqs-login-form-container h2 {
+	padding: 3rem 0;
+}
+
+.bloqs-login-form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	flex-wrap: wrap;
+	gap: 1rem 0;
+	padding: 1rem 0;
+}
+
+input {
+	padding: 0.5rem 0.5rem;
+	width: 80%;
+	max-width: 480px;
+}
+
+.bloqs-login-submit {
+	width: 90%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bloqs-login-forgot-password {
+	width: 90%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem 0;
+}
+
+.bloqs-login-seperator {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	padding: 1.5rem;
+}
+
+.bloqs-login-seperator hr {
+	width: 20%;
+}
+
+.bloqs-login-social {
+	padding: 1rem 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bloqs-login-sign-up {
+	padding: 1rem 0;
+}
