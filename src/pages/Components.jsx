@@ -3,18 +3,26 @@ import './Components.css';
 import Modal from '../components/Modal/Modal';
 import MiniLoader from '../components/MiniLoader/MiniLoader';
 import Navigation from '../components/Navigation/Navigation';
-import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { nord as theme } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { nord as theme } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { jsx } from 'react-syntax-highlighter/dist/esm/languages/prism';
+import { css } from 'react-syntax-highlighter/dist/esm/languages/prism';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { ToastContainer, toast } from 'react-toastify';
 import '../components/Toast/Toast.css';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from '../components/Login/Login';
 import SignUp from '../components/Signup/SignUp';
+import AnimateHeight from 'react-animate-height';
 
 export default function Components() {
 	// Modal
 	const [show, setShow] = useState(false);
+	const [heightJSX, setHeightJSX] = useState('10%');
+	const [heightCSS, setHeightCSS] = useState('10%');
+
+	SyntaxHighlighter.registerLanguage('jsx', jsx);
+	SyntaxHighlighter.registerLanguage('css', css);
 
 	const notify = () => {
 		toast(<ToastDisplay />);
@@ -47,10 +55,15 @@ export default function Components() {
 								<i className='bx bx-copy'></i>
 							</CopyToClipboard>
 						</button>
+						<button onClick={() => setHeightJSX(heightJSX === '10%' ? 'auto' : '10%')}>
+							{heightJSX === '10%' ? <i className='bx bx-expand-vertical'></i> : <i className='bx bx-collapse-vertical'></i>}
+						</button>
 					</span>
-					<SyntaxHighlighter language='jsx' style={theme} wrapLongLines customStyle={{ borderRadius: '0 0 12px 12px', margin: 0 }}>
-						{jsxCode}
-					</SyntaxHighlighter>
+					<AnimateHeight duration={300} height={heightJSX} style={{ borderRadius: '12px', margin: 0 }}>
+						<SyntaxHighlighter language='jsx' style={theme} wrapLongLines>
+							{jsxCode}
+						</SyntaxHighlighter>
+					</AnimateHeight>
 				</div>
 				<div className='css'>
 					<span className='copy-button'>
@@ -60,10 +73,15 @@ export default function Components() {
 								<i className='bx bx-copy'></i>
 							</CopyToClipboard>
 						</button>
+						<button onClick={() => setHeightCSS(heightCSS === '10%' ? 'auto' : '10%')}>
+							{heightCSS === '10%' ? <i className='bx bx-expand-vertical'></i> : <i className='bx bx-collapse-vertical'></i>}
+						</button>
 					</span>
-					<SyntaxHighlighter language='css' style={theme} wrapLongLines customStyle={{ borderRadius: '0 0 12px 12px', margin: 0 }}>
-						{cssCode}
-					</SyntaxHighlighter>
+					<AnimateHeight duration={300} height={heightCSS} animateOpacity style={{ borderRadius: '12px', margin: 0 }}>
+						<SyntaxHighlighter language='css' style={theme} wrapLongLines>
+							{cssCode}
+						</SyntaxHighlighter>
+					</AnimateHeight>
 				</div>
 			</>
 		);
@@ -254,6 +272,7 @@ export default function Modal(props) {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 100%;
+	height: 100%;
 	z-index: 100;
 	background-color: hsla(0, 0%, 100%, 0.1);
 	backdrop-filter: blur(8px);
